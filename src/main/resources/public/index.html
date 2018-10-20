@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="newsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/module.js"></script>
+    <script src="/service.js"></script>
+
+    <style>
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: #106d4f;
+            color: black;
+        }
+
+        .previous {
+            background-color: #ddd;
+            color: #136d4f;
+        }
+
+        .next {
+            background-color: #ddd;
+            color: #136d4f;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
+    </style>
+
+</head>
+<body ng-controller="newsController">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">World News</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span
+                    class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                    <li><a href="" ng-click="button(country,categoryTechnology,page)">technology</a></li>
+                    <li><a href="" ng-click="button(country,categorySports,page)">sports</a></li>
+                    <li><a href="" ng-click="button(country,categoryBusiness,page)">business</a></li>
+                    <li><a href="" ng-click="button(country,categoryEntertainment,page)">entertainment</a></li>
+                    <li><a href="" ng-click="button(country,categoryHealth,page)">health</a></li>
+                    <li><a href="" ng-click="button(country,categoryScience,page)">science</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form class="navbar-form navbar-left">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="search" ng-model="search">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit" ng-click="searchNews(search)">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+<div class="row" align="left">
+    <a href="" class="previous" ng-click="previousPage()">&laquo; Previous</a>
+    <a href="" class="next" ng-click="nextPage()">Next &raquo;</a>
+</div>
+<div class="container">
+    <div>
+        <div class="row">
+            <div ng-repeat="ArticlePojo in news.articles" class="card" style="width: 100%">
+                <div class="well">
+                    <img class="card-img-top" ng-src="{{ArticlePojo.imageUrl}}" alt=" No image" width="300px"
+                         height="250px">
+                    <div class="card-body">
+                        <a ng-href={{ArticlePojo.articleUrl}}>{{ArticlePojo.articleUrl}}</a>
+                        <h5 class="card-title">{{ArticlePojo.title}}</h5>
+                        <p class="card-text">{{ArticlePojo.description}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Author: <span>{{ArticlePojo.author}}</span></li>
+                        <li class="list-group-item">Date: <span>{{ArticlePojo.date}}</span></li>
+                        <li class="list-group-item">Source: <span>{{ArticlePojo.sourceName}}</span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
